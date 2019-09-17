@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Comparator;
 
 /**
  * Bank manages a collection of accounts. An account number is assigned
@@ -18,17 +19,11 @@ public class Bank {
     List<Account> accs;
 
     /**
-     * A map from an ownwer name to accounts for searching.
-     */
-    Map<String, Account> accsByName;
-
-    /**
      * Create a bank and initialize its collections.
      */
     Bank() {
         // TODO implement this
         accs = new ArrayList<Account>();
-        accsByName = new HashMap<String, Account>();
     }
 
     /**
@@ -40,9 +35,7 @@ public class Bank {
     Account findAccount(int accNum) {
         // TODO implement this
         for (Account acc : accs){
-            System.out.println(acc.getAccountNumber() + "  " + accNum);
             if(accNum == acc.getAccountNumber()){
-                System.out.println("Account find correct");
                 return acc;
             }
         }
@@ -57,17 +50,24 @@ public class Bank {
      */
     List<Account> findAccountByName(String name) {
         // TODO implement this
-        Iterator<String> keys = accsByName.keySet().iterator();
-        while(keys.hasNext()){
-            String key = keys.next();
-            System.out.println("infindAccount");
-            System.out.println( String.format("키 : %s, 값 : %s", key, accsByName.get(key)) );
-            if(name == key){
-                System.out.println("find correct");
-                return (List<Account>)accsByName.get(key);
+        List<Account> rst = new ArrayList<Account>();
+        for (Account acc : accs){
+            if(name == acc.getOwner()){
+                rst.add(acc);
             }
         }
-        return null;
+        rst.sort(new Comparator<Account>(){
+            @Override
+            public int compare(Account acc1, Account acc2){
+                int accNum1 = acc1.getAccountNumber();
+                int accNum2 = acc2.getAccountNumber();
+
+                if(accNum1 == accNum2) return 0;
+                else if(accNum1 > accNum2) return 1;
+                else return -1;
+            }
+        });
+        return rst;
     }
 
     /**
@@ -82,16 +82,13 @@ public class Bank {
     Account createAccount(String name, ACCTYPE accType, double initial) {
         // TODO implement this
         Account newAccount = null;
-        System.out.println(accs.size());
         if(accType == ACCTYPE.LOW){
             newAccount = new LowInterestAccount(accs.size()+100000, name, initial);
         }
         else if(accType == ACCTYPE.HIGH){
             newAccount = new HighInterestAccount(accs.size()+100000, name, initial);
         }
-        System.out.println("createAccount"+newAccount.getAccountNumber());
         accs.add(newAccount);
-        System.out.println(accs.size());
         return newAccount;
     }
 
@@ -109,7 +106,6 @@ public class Bank {
             src.withdraw(amount);
             dst.deposit(amount);
         }catch(IllegalOperationException e){
-            System.out.println("Illegal Operation Exeption");
         }
     }
 }

@@ -35,18 +35,14 @@ class HighInterestAccount implements Account {
 
     public void updateBalance(int elapsedDate) {
         //TODO implement this
-        System.out.println("b update"+this.balance);
         for(int i = 0; i < elapsedDate; i++){
             this.balance = this.balance * 1.01;
         }
-        System.out.println("a update"+this.balance);
     }
 
     public void deposit(double amount) {
         //TODO implement this
-        System.out.println("b deposit"+this.balance);
         this.balance += amount;
-        System.out.println("a deposit"+this.balance);
     }
 
     public void withdraw(double amount) throws IllegalOperationException {
