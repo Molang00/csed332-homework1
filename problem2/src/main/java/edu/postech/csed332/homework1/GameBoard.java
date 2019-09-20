@@ -20,6 +20,9 @@ import java.util.*;
 public class GameBoard {
     private final Position goal;
     private final int width, height;
+    private final HashMap<Position, Unit> units;
+    private final HashMap<Position, Tower> towers;
+    private final HashMap<Position, Monster> mobs;
 
     // TODO: add more fields to implement this class
 
@@ -36,6 +39,10 @@ public class GameBoard {
         goal = new Position(width - 1, height / 2);
 
         // TODO: add more lines if needed.
+
+        units = new HashMap<Position, Unit>();
+        towers = new HashMap<Position, Tower>();
+        mobs = new HashMap<Position, Monster>();
     }
 
     /**
@@ -47,6 +54,13 @@ public class GameBoard {
      */
     public void placeUnit(Unit obj, Position p) {
         // TODO: implement this
+        units.put(p, obj);
+//        if(obj instanceof Tower){
+//            towers.put(p, obj);
+//        }
+//        else{
+//            mobs.put(p, obj);
+//        }
     }
 
     /**

@@ -40,10 +40,9 @@ public class BankTest {
         wb.createAccount("Thomas", ACCTYPE.HIGH, 30000.);
         wb.createAccount("Thomas", ACCTYPE.HIGH, 70000.);
         List<Account> s = wb.findAccountByName("Thomas");
-        System.out.println("findaccountbyname");
-        System.out.println(s);
-        for(Account acc : s){
-            System.out.println(acc.getAccountNumber());
+        for(int i = 0; i < s.size(); i++){
+            //System.out.println(s.get(i));
+            assertEquals(s.get(i).getAccountNumber(), 100000+i);
         }
     }
 }

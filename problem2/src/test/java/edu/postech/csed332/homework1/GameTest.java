@@ -13,6 +13,7 @@ public class GameTest {
     @Test
     void testGameBoard() {
         GameBoard board = new GameBoard(5, 3);
+        System.out.println("w: "+board.getWidth()+" h: "+board.getHeight());
         assertEquals(board.getWidth(), 5);
         assertEquals(board.getHeight(), 3);
     }

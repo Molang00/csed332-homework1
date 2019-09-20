@@ -24,7 +24,7 @@ public class GroundMob implements Monster {
     @Override
     public boolean isGround() {
         // TODO implement this
-        return false;
+        return true;
     }
 
     @Override
