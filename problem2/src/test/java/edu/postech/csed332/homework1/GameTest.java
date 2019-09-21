@@ -100,4 +100,29 @@ public class GameTest {
         assertFalse(o4.attack().contains(o2));
         System.out.println("6th test");
     }
+
+    @Test
+    void ariMobMove() {
+        System.out.println("7th test");
+        GameBoard board = new GameBoard(5, 3);
+        Tower o1 = new GroundTower(board);
+        Position p1 = new Position(1, 1);
+        Monster o2 = new GroundMob(board);
+        Position p2 = new Position(1, 2);
+        Monster o3 = new AirMob(board);
+        Position p3 = new Position(2, 1);
+        Tower o4 = new AirTower(board);
+        Position p4 = new Position(2, 2);
+
+        board.placeUnit(o1, p1);
+        board.placeUnit(o2, p2);
+        board.placeUnit(o3, p3);
+        board.placeUnit(o4, p4);
+        assertTrue(o1.attack().contains(o2));
+        assertTrue(o4.attack().contains(o3));
+        assertFalse(o1.attack().contains(o3));
+        assertFalse(o4.attack().contains(o2));
+        o3.move();
+        System.out.println("6th test");
+    }
 }

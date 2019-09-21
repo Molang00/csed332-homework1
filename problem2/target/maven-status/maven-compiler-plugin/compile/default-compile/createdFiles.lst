@@ -1,7 +1,10 @@
+edu/postech/csed332/homework1/GroundMob$1.class
 edu/postech/csed332/homework1/GUIPanel.class
 edu/postech/csed332/homework1/GroundTower.class
 edu/postech/csed332/homework1/Monster.class
+edu/postech/csed332/homework1/GameBoard$1.class
 edu/postech/csed332/homework1/Unit.class
+edu/postech/csed332/homework1/AirMob$1.class
 edu/postech/csed332/homework1/AirTower.class
 edu/postech/csed332/homework1/AirMob.class
 edu/postech/csed332/homework1/GameUI.class

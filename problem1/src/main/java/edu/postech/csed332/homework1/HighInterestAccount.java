@@ -47,6 +47,7 @@ class HighInterestAccount implements Account {
 
     public void withdraw(double amount) throws IllegalOperationException {
         //TODO implement this
+        System.out.println(this.balance);
         if (this.balance - amount < 1000) {
             throw new IllegalOperationException("There is not much money to withdraw");
         }

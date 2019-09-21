@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.postech.csed332.homework1.GameTest" time="0.051" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.postech.csed332.homework1.GameTest" time="0.162" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -17,7 +17,7 @@
     <property name="user.country" value="KR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib"/>
-    <property name="sun.java.command" value="/Users/kimbyeongsu/POSTECH/2019_2/CSED332/homework1/problem2/target/surefire/surefirebooter2928518080322186711.jar /Users/kimbyeongsu/POSTECH/2019_2/CSED332/homework1/problem2/target/surefire 2019-09-21T16-08-46_931-jvmRun1 surefire5084698549848138752tmp surefire_01560354186201503555tmp"/>
+    <property name="sun.java.command" value="/Users/kimbyeongsu/POSTECH/2019_2/CSED332/homework1/problem2/target/surefire/surefirebooter6122318216850998870.jar /Users/kimbyeongsu/POSTECH/2019_2/CSED332/homework1/problem2/target/surefire 2019-09-21T22-57-00_998-jvmRun1 surefire2377311965231688861tmp surefire_01027828430493015218tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16|localhost|*.localhost|lx.astxsvc.com|*.lx.astxsvc.com|127.0.0.1:21300|*.127.0.0.1:21300"/>
     <property name="surefire.test.class.path" value="/Users/kimbyeongsu/POSTECH/2019_2/CSED332/homework1/problem2/target/test-classes:/Users/kimbyeongsu/POSTECH/2019_2/CSED332/homework1/problem2/target/classes:/Users/kimbyeongsu/.m2/repository/org/junit/jupiter/junit-jupiter/5.5.2/junit-jupiter-5.5.2.jar:/Users/kimbyeongsu/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.5.2/junit-jupiter-api-5.5.2.jar:/Users/kimbyeongsu/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/Users/kimbyeongsu/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/kimbyeongsu/.m2/repository/org/junit/platform/junit-platform-commons/1.5.2/junit-platform-commons-1.5.2.jar:/Users/kimbyeongsu/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.5.2/junit-jupiter-params-5.5.2.jar:/Users/kimbyeongsu/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.5.2/junit-jupiter-engine-5.5.2.jar:/Users/kimbyeongsu/.m2/repository/org/junit/platform/junit-platform-engine/1.5.2/junit-platform-engine-1.5.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/kimbyeongsu/POSTECH/2019_2/CSED332/homework1/problem2/target/surefire/surefirebooter2928518080322186711.jar"/>
+    <property name="surefire.real.class.path" value="/Users/kimbyeongsu/POSTECH/2019_2/CSED332/homework1/problem2/target/surefire/surefirebooter6122318216850998870.jar"/>
     <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home/jre/classes"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16|localhost|*.localhost|lx.astxsvc.com|*.lx.astxsvc.com|127.0.0.1:21300|*.127.0.0.1:21300"/>
@@ -62,10 +62,11 @@
     <property name="java.class.version" value="52.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16|localhost|*.localhost|lx.astxsvc.com|*.lx.astxsvc.com|127.0.0.1:21300|*.127.0.0.1:21300"/>
   </properties>
-  <testcase name="testPlaceUnit" classname="edu.postech.csed332.homework1.GameTest" time="0.03"/>
-  <testcase name="testAttacks" classname="edu.postech.csed332.homework1.GameTest" time="0.006"/>
-  <testcase name="testPlaceTwoUnits" classname="edu.postech.csed332.homework1.GameTest" time="0.001"/>
-  <testcase name="testGroundAttack" classname="edu.postech.csed332.homework1.GameTest" time="0"/>
-  <testcase name="testPlaceUnitInvalid" classname="edu.postech.csed332.homework1.GameTest" time="0.002"/>
-  <testcase name="testGameBoard" classname="edu.postech.csed332.homework1.GameTest" time="0.001"/>
+  <testcase name="testPlaceUnit" classname="edu.postech.csed332.homework1.GameTest" time="0.027"/>
+  <testcase name="testAttacks" classname="edu.postech.csed332.homework1.GameTest" time="0.016"/>
+  <testcase name="testPlaceTwoUnits" classname="edu.postech.csed332.homework1.GameTest" time="0.004"/>
+  <testcase name="ariMobMove" classname="edu.postech.csed332.homework1.GameTest" time="0.049"/>
+  <testcase name="testGroundAttack" classname="edu.postech.csed332.homework1.GameTest" time="0.006"/>
+  <testcase name="testPlaceUnitInvalid" classname="edu.postech.csed332.homework1.GameTest" time="0.018"/>
+  <testcase name="testGameBoard" classname="edu.postech.csed332.homework1.GameTest" time="0"/>
 </testsuite>

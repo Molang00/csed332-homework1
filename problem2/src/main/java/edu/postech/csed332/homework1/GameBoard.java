@@ -45,7 +45,6 @@ public class GameBoard {
         goal = new Position(width - 1, height / 2);
 
         // TODO: add more lines if needed.
-
         units = new HashMap<Position, Set<Unit> >();
         towers = new HashSet<Tower>();
         mobs = new HashSet<Monster>();
@@ -174,6 +173,56 @@ public class GameBoard {
      */
     public void step() {
         // TODO: implement this
+        if(units.get(goal) != null) {
+            numMobsEscaped += units.get(goal).size();
+            if (mobs != null) {
+                for (Monster mob : mobs) {
+                    Position p = getPosition(mob);
+                    if (p == goal) mobs.remove(mob);
+                }
+            }
+            units.remove(goal);
+        }
+        for(Tower tower : towers) {
+            Set<Monster> attackedMobs = tower.attack();
+            if (attackedMobs != null) {
+                for (Monster attackedMob : attackedMobs) {
+                    numMobsKilled++;
+                    mobs.remove(attackedMob);
+                    Position attackedPos = getPosition(attackedMob);
+                    Set<Unit> unts = getUnitsAt(attackedPos);
+                    if(unts.size() == 1) units.remove(attackedPos);
+                    else if(unts.size() >= 2) {
+                        unts.remove(attackedMob);
+                        units.put(attackedPos, unts);
+                    }
+                }
+            }
+        }
+
+        List<Monster> mobsList = new ArrayList(mobs);
+        Collections.sort(mobsList, new Comparator<Monster>(){
+            @Override
+            public int compare (Monster o1, Monster o2){
+                Position p1 = getPosition((Unit)o1);
+                Position p2 = getPosition((Unit)o2);
+                return p1.getDistance(getGoalPosition()) - p2.getDistance(getGoalPosition());
+            }
+        });
+
+        for(Monster mob : mobsList){
+            Position cur = getPosition(mob);
+            Position next = mob.move();
+
+            Set<Unit> curUnits = getUnitsAt(cur);
+            if(curUnits.size() == 1) units.remove(mob);
+            else if(curUnits.size()>= 2){
+                curUnits.remove(mob);
+                units.put(cur, curUnits);
+            }
+            numMobs--;
+            placeUnit(mob, next);
+        }
     }
 
     /**
