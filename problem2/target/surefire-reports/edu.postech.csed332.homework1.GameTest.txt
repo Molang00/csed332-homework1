@@ -1,20 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: edu.postech.csed332.homework1.GameTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 3, Errors: 1, Skipped: 0, Time elapsed: 0.06 s <<< FAILURE! - in edu.postech.csed332.homework1.GameTest
-testPlaceUnit  Time elapsed: 0.039 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
-	at edu.postech.csed332.homework1.GameTest.testPlaceUnit(GameTest.java:28)
-
-testPlaceTwoUnits  Time elapsed: 0.001 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
-	at edu.postech.csed332.homework1.GameTest.testPlaceTwoUnits(GameTest.java:52)
-
-testGroundAttack  Time elapsed: 0.001 s  <<< ERROR!
-java.lang.NullPointerException
-	at edu.postech.csed332.homework1.GameTest.testGroundAttack(GameTest.java:68)
-
-testPlaceUnitInvalid  Time elapsed: 0.004 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
-	at edu.postech.csed332.homework1.GameTest.testPlaceUnitInvalid(GameTest.java:38)
-
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.051 s - in edu.postech.csed332.homework1.GameTest

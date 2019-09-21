@@ -45,5 +45,23 @@ public class BankTest {
             assertEquals(s.get(i).getAccountNumber(), 100000+i);
         }
     }
+    
+    @Test
+    void findaccountbynametest() {
+        wb.createAccount("Tomas", ACCTYPE.HIGH, 90000.);
+        wb.createAccount("Tomas", ACCTYPE.LOW, 10000.);
+        List<Account> tmp = wb.findAccountByName("Tomas");
+        assertEquals(2, tmp.size());
+    }
+
+    @Test
+    void test3() {
+
+        wb.createAccount("Tomas", ACCTYPE.HIGH, 90000.);
+        wb.createAccount("Tomas", ACCTYPE.LOW, 10000.);
+        List<Account> tmp = wb.findAccountByName("Tomas");
+
+        assertEquals(100000., tmp.get(0).getBalance() + tmp.get(1).getBalance());
+    }
 }
 

@@ -1,6 +1,6 @@
 package edu.postech.csed332.homework1;
 
-import java.util.Set;
+import java.util.*;
 
 /**
  * An air tower that can attack nearby air monsters within 1 tile of distance.
@@ -11,20 +11,41 @@ import java.util.Set;
  * you can define a new (abstract) super class that this class inherits.
  */
 public class AirTower implements Tower {
+    GameBoard board;
 
     public AirTower(GameBoard board) {
         // TODO: implement this
+        this.board = board;
     }
 
     @Override
     public Set<Monster> attack() {
         // TODO: implement this
-        return null;
+        Set<Monster> rst = new HashSet<Monster>();
+        Position here = board.getPosition(this);
+        Set<Position> adj = new HashSet<Position>();
+        adj.add(here.getRelativePosition(-1, 0));
+        adj.add(here.getRelativePosition(1, 0));
+        adj.add(here.getRelativePosition(0, -1));
+        adj.add(here.getRelativePosition(0, 1));
+
+        for(Position tmp : adj){
+            Set<Unit> atThere = board.getUnitsAt(tmp);
+            if(atThere != null) {
+                for (Unit unt : atThere) {
+                    if (unt instanceof AirMob) {
+                        rst.add((Monster) unt);
+                    }
+                }
+            }
+        }
+
+        return rst;
     }
 
     @Override
     public GameBoard getBoard() {
         // TODO: implement this
-        return null;
+        return board;
     }
 }

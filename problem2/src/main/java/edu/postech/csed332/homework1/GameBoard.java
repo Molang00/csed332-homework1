@@ -20,9 +20,15 @@ import java.util.*;
 public class GameBoard {
     private final Position goal;
     private final int width, height;
-    private final HashMap<Position, Unit> units;
-    private final HashMap<Position, Tower> towers;
-    private final HashMap<Position, Monster> mobs;
+
+    private final Map<Position, Set<Unit> > units;
+    private final Set<Tower> towers;
+    private final Set<Monster> mobs;
+
+    private int numMobs;
+    private int numTowers;
+    private int numMobsKilled;
+    private int numMobsEscaped;
 
     // TODO: add more fields to implement this class
 
@@ -40,9 +46,14 @@ public class GameBoard {
 
         // TODO: add more lines if needed.
 
-        units = new HashMap<Position, Unit>();
-        towers = new HashMap<Position, Tower>();
-        mobs = new HashMap<Position, Monster>();
+        units = new HashMap<Position, Set<Unit> >();
+        towers = new HashSet<Tower>();
+        mobs = new HashSet<Monster>();
+
+        numMobs = 0;
+        numTowers = 0;
+        numMobsKilled = 0;
+        numMobsEscaped = 0;
     }
 
     /**
@@ -52,15 +63,31 @@ public class GameBoard {
      * @param p   the position of obj
      * @throws IllegalArgumentException if p is outside the bounds of the board.
      */
-    public void placeUnit(Unit obj, Position p) {
+    public void placeUnit(Unit obj, Position p) throws IllegalArgumentException {
         // TODO: implement this
-        units.put(p, obj);
-//        if(obj instanceof Tower){
-//            towers.put(p, obj);
-//        }
-//        else{
-//            mobs.put(p, obj);
-//        }
+        Set<Unit> newObjSet;
+        if(units.containsKey(p)){
+            newObjSet = units.get(p);
+        }
+        else {
+            newObjSet = new HashSet();
+        }
+        newObjSet.add(obj);
+        units.put(p, newObjSet);
+
+        if(obj instanceof Tower){
+            towers.add((Tower)obj);
+            numTowers++;
+        }
+        else {
+            mobs.add((Monster) obj);
+            numMobs++;
+        }
+
+        if(!isValid()){
+            System.out.println("IllegalArgumentException");
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -69,6 +96,14 @@ public class GameBoard {
      */
     public void clear() {
         // TODO: implement this
+        units.clear();
+        towers.clear();
+        mobs.clear();
+
+        numMobs = 0;
+        numTowers = 0;
+        numMobsKilled = 0;
+        numMobsEscaped = 0;
     }
 
     /**
@@ -80,7 +115,15 @@ public class GameBoard {
      */
     public Set<Unit> getUnitsAt(Position p) {
         // TODO: implement this
-        return Collections.emptySet();
+        Set<Unit> rst = units.get(p);
+
+        if(rst != null) {
+            for (Unit cur : rst) {
+                System.out.println(cur);
+            }
+        }
+
+        return rst;
     }
 
     /**
@@ -90,7 +133,7 @@ public class GameBoard {
      */
     public Set<Monster> getMonsters() {
         // TODO: implement this
-        return Collections.emptySet();
+        return mobs;
     }
 
     /**
@@ -100,7 +143,7 @@ public class GameBoard {
      */
     public Set<Tower> getTowers() {
         // TODO: implement this
-        return Collections.emptySet();
+        return towers;
     }
 
     /**
@@ -111,6 +154,15 @@ public class GameBoard {
      */
     public Position getPosition(Unit obj) {
         // TODO: implement this
+        System.out.println("getPosition");
+        for(Position key: units.keySet()){
+            for(Unit cur: units.get(key)) {
+                if (cur == obj) {
+                    return key;
+                }
+            }
+        }
+        System.out.println("return null");
         return null;
     }
 
@@ -134,7 +186,31 @@ public class GameBoard {
      */
     public boolean isValid() {
         // TODO: implement this
-        return false;
+        for(Position pos : units.keySet()){
+            Set<Unit> curSet = units.get(pos);
+            boolean isGround = false;
+            boolean isAir = false;
+
+            if(pos.getX() < 0 || pos.getX() >= width || pos.getY() < 0 || pos.getY() >= height){
+                return false;
+            }
+
+            for(Unit cur : curSet){
+                if(cur instanceof Tower){
+                    if(isGround) return false;
+                    isGround = true;
+                }
+                else if(cur instanceof GroundMob){
+                    if(isGround) return false;
+                    isGround = true;
+                }
+                else if(cur instanceof AirMob){
+                    if(isAir) return false;
+                    isAir = true;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -144,7 +220,7 @@ public class GameBoard {
      */
     public int getNumMobs() {
         // TODO: implement this
-        return 0;
+        return numMobs;
     }
 
     /**
@@ -154,7 +230,7 @@ public class GameBoard {
      */
     public int getNumTowers() {
         // TODO: implement this
-        return 0;
+        return numMobs;
     }
 
     /**
@@ -165,7 +241,7 @@ public class GameBoard {
      */
     public int getNumMobsKilled() {
         // TODO: implement this
-        return 0;
+        return numMobsKilled;
     }
 
     /**
@@ -176,7 +252,7 @@ public class GameBoard {
      */
     public int getNumMobsEscaped() {
         // TODO: implement this
-        return 0;
+        return numMobsEscaped;
     }
 
     /**

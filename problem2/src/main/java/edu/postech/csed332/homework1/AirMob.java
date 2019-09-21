@@ -10,9 +10,11 @@ package edu.postech.csed332.homework1;
  * @see GameBoard#isValid
  */
 public class AirMob implements Monster {
+    GameBoard board;
 
     public AirMob(GameBoard board) {
         // TODO: implement this
+        this.board = board;
     }
 
     @Override
@@ -30,6 +32,6 @@ public class AirMob implements Monster {
     @Override
     public GameBoard getBoard() {
         // TODO: implement this
-        return null;
+        return board;
     }
 }
