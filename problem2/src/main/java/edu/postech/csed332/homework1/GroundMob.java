@@ -41,6 +41,28 @@ public class GroundMob implements Monster {
         return arr;
     }
 
+    public boolean isValid(Position pos){
+        Set<Unit> curSet = board.getUnitsAt(pos);
+        boolean isGround = true;
+
+        if(pos.getX() < 0 || pos.getX() >= board.getWidth() || pos.getY() < 0 || pos.getY() >= board.getHeight()){
+            return false;
+        }
+        if(curSet != null){
+            for(Unit cur : curSet){
+                if(cur instanceof Tower){
+                    if(isGround) return false;
+                    isGround = true;
+                }
+                else if(cur instanceof GroundMob){
+                    if(isGround) return false;
+                    isGround = true;
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public Position move() {
         // TODO: implement this
@@ -59,7 +81,7 @@ public class GroundMob implements Monster {
             System.out.println(at.getX()+" "+at.getY()+" "+at.getDistance(board.getGoalPosition()));
             List<Position> arr = getArround(at);
             int flag = 0;
-            if(!board.isValid()) continue;
+            if(!isValid(at)) continue;
             for(Position t : arr){
                 Set<Unit> atThere = board.getUnitsAt(t);
                 if(atThere != null){

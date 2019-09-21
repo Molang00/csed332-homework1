@@ -41,6 +41,25 @@ public class AirMob implements Monster {
         return arr;
     }
 
+    public boolean isValid(Position pos, boolean isOK){
+        Set<Unit> curSet = board.getUnitsAt(pos);
+        boolean isAir = true;
+
+        if(pos.getX() < 0 || pos.getX() >= board.getWidth() || pos.getY() < 0 || pos.getY() >= board.getHeight()){
+            return false;
+        }
+
+        if(isOK && curSet != null){
+            for(Unit cur : curSet){
+                if(cur instanceof AirMob){
+                    if(isAir) return false;
+                    isAir = true;
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public Position move() {
         // TODO: implement this
@@ -59,7 +78,7 @@ public class AirMob implements Monster {
             System.out.println(at.getX()+" "+at.getY()+" "+at.getDistance(board.getGoalPosition()));
             List<Position> arr = getArround(at);
             int flag = 0;
-            if(!board.isValid()) continue;
+            if(!isValid(at, true)) continue;
             for(Position t : arr){
                 Set<Unit> atThere = board.getUnitsAt(t);
                 if(atThere != null){
@@ -76,6 +95,10 @@ public class AirMob implements Monster {
             }
             if(flag == 1) continue;
             else return at;
+        }
+        for(Position at: adj){
+            if(!isValid(at, false)) continue;
+            return at;
         }
         return cur;
     }

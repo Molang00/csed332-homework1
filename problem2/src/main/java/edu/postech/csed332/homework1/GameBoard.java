@@ -89,6 +89,20 @@ public class GameBoard {
         }
     }
 
+    public void removeUnit(Unit obj, Position p){
+        // Set<Unit> deleteObjSet = units.get(p);
+        // if(deleteObjSet.size() == 1) units.remove(p);
+        // else if(deleteObjSet.size() >= 2){
+        //     deleteObjSet.remove(obj);
+        //     units.put(p, deleteObjSet);
+        // }
+
+        if(obj instanceof Monster) {
+            mobs.remove((Monster) obj);
+            numMobs--;
+        }
+    }
+
     /**
      * Clears this game board. That is, all units are removed, and all numbers
      * for game statistics are reset to 0.
@@ -118,7 +132,7 @@ public class GameBoard {
 
         if(rst != null) {
             for (Unit cur : rst) {
-                System.out.println(cur);
+                System.out.println(cur+" "+p.getX()+" "+p.getY());
             }
         }
 
@@ -153,7 +167,6 @@ public class GameBoard {
      */
     public Position getPosition(Unit obj) {
         // TODO: implement this
-        System.out.println("getPosition");
         for(Position key: units.keySet()){
             for(Unit cur: units.get(key)) {
                 if (cur == obj) {
@@ -161,7 +174,6 @@ public class GameBoard {
                 }
             }
         }
-        System.out.println("return null");
         return null;
     }
 
@@ -174,15 +186,20 @@ public class GameBoard {
     public void step() {
         // TODO: implement this
         if(units.get(goal) != null) {
-            numMobsEscaped += units.get(goal).size();
-            if (mobs != null) {
-                for (Monster mob : mobs) {
-                    Position p = getPosition(mob);
-                    if (p == goal) mobs.remove(mob);
-                }
+            for(Unit escapeUnit : units.get(goal)){
+                removeUnit(escapeUnit, this.getPosition(escapeUnit));
             }
+
+            numMobsEscaped += units.get(goal).size();
+            // if (mobs != null) {
+            //     for (Monster mob : mobs) {
+            //         Position p = getPosition(mob);
+            //         if (p == goal) mobs.remove(mob);
+            //     }
+            // }
             units.remove(goal);
         }
+
         for(Tower tower : towers) {
             Set<Monster> attackedMobs = tower.attack();
             if (attackedMobs != null) {
@@ -215,12 +232,14 @@ public class GameBoard {
             Position next = mob.move();
 
             Set<Unit> curUnits = getUnitsAt(cur);
-            if(curUnits.size() == 1) units.remove(mob);
+            if(curUnits.size() == 1) units.remove(getPosition((Unit)mob));
             else if(curUnits.size()>= 2){
                 curUnits.remove(mob);
                 units.put(cur, curUnits);
             }
             numMobs--;
+            System.out.println(mob+" "+next.getX()+" "+next.getY()+" "+mob.isGround());
+
             placeUnit(mob, next);
         }
     }
